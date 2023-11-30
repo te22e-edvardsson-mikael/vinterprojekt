@@ -4,15 +4,16 @@ using Raylib_cs;
 Raylib.InitWindow(1800, 900, "vinterprojekt");
 Raylib.SetTargetFPS(60);
 
-Rectangle p = new Rectangle(50,50,50,50);
-Rectangle e = new Rectangle(850,50,50,50);
 
 
+//List<Rectangle> = new List<Rectangle>();
 
 
 
 while (!Raylib.WindowShouldClose())
 {
+
+
 
 
 
@@ -22,13 +23,32 @@ while (!Raylib.WindowShouldClose())
   
   Raylib.ClearBackground(Color.WHITE);
 
-  //List<Rectangle> = new List<Rectangle>();
+  
+Rectangle playerRect = new Rectangle(50,50,100,100);
+Rectangle enemyRect = new Rectangle(1000,100,100,100);
+Rectangle overlap = Raylib.GetCollisionRec(playerRect, enemyRect);
+
+Raylib.DrawRectangleRec(playerRect, Color.RED);
+Raylib.DrawRectangleRec(enemyRect, Color.BLUE);
+Raylib.DrawRectangleRec(overlap, Color.ORANGE);
 
 
+string scene = "start";
+
+if (scene == "start")
+{
+   if (Raylib.IsKeyDown(KeyboardKey.KEY_D))
+{
+playerRect.X +=1;
+}
+   if (Raylib.IsKeyDown(KeyboardKey.KEY_A))
+{
+playerRect.X -=1;
+}
+
+}
+
   
-  Raylib.DrawRectangleRec(p, Color.SKYBLUE);
-  Raylib.DrawRectangleRec(e, Color.RED);
-  bool Overlapping = Raylib.CheckCollisionRecs(pRect, eRect);
-  
-  Raylib.EndDrawing();
+Raylib.EndDrawing();
+
 }
