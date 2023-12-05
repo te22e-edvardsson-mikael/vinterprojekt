@@ -6,7 +6,13 @@ Raylib.SetTargetFPS(60);
 
 
 
-//List<Rectangle> = new List<Rectangle>();
+List<Rectangle> walls = new();
+
+
+Rectangle wall1 = new Rectangle(123, 0, 1800, 20);
+Rectangle wall2 = new Rectangle(150, 0, 32, 128);
+Rectangle wall3 = new Rectangle(320, 0, 16, 20);
+Rectangle wall4 = new Rectangle(300, 100, 60, 20);
 
 Rectangle playerRect = new Rectangle(50, 50, 100, 100);
 Rectangle enemyRect = new Rectangle(1000, 100, 100, 100);
@@ -51,17 +57,24 @@ while (!Raylib.WindowShouldClose())
       playerRect.Y +=5;
     }
      
-    if (playerRect.X < 0 || playerRect.X > 1699) {
-    playerRect.X *= -1;
+ if (playerRect.X < 0 || playerRect.X > 1699) {
+ playerRect.X *= -1;
   }
 
-  if (playerRect.Y < 0  || playerRect.Y > 799) {
-    playerRect.Y *= -1;
+if (playerRect.Y < 0  || playerRect.Y > 799) {
+playerRect.Y *= -1;
   }
 
+
+ foreach (Rectangle wall in walls)
+   {
+    if (Raylib.CheckCollisionRecs(playerRect, wall))
+    {
+  playerRect.X = 0;
+  playerRect.Y = 0;
+
+    }
   }
-
-
   Raylib.EndDrawing();
-
+  }
 }
