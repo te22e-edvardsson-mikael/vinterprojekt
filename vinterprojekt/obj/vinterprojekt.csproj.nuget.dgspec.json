@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mikael.edvardsson2\\Documents\\programmering\\vinterprojekt\\vinterprojekt\\vinterprojekt.csproj": {}
+    "c:\\Users\\mikael.edvardsson2\\Documents\\programmering\\vinterprojekt\\vinterprojekt\\vinterprojekt.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mikael.edvardsson2\\Documents\\programmering\\vinterprojekt\\vinterprojekt\\vinterprojekt.csproj": {
+    "c:\\Users\\mikael.edvardsson2\\Documents\\programmering\\vinterprojekt\\vinterprojekt\\vinterprojekt.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mikael.edvardsson2\\Documents\\programmering\\vinterprojekt\\vinterprojekt\\vinterprojekt.csproj",
+        "projectUniqueName": "c:\\Users\\mikael.edvardsson2\\Documents\\programmering\\vinterprojekt\\vinterprojekt\\vinterprojekt.csproj",
         "projectName": "vinterprojekt",
-        "projectPath": "C:\\Users\\mikael.edvardsson2\\Documents\\programmering\\vinterprojekt\\vinterprojekt\\vinterprojekt.csproj",
+        "projectPath": "c:\\Users\\mikael.edvardsson2\\Documents\\programmering\\vinterprojekt\\vinterprojekt\\vinterprojekt.csproj",
         "packagesPath": "C:\\Users\\mikael.edvardsson2\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mikael.edvardsson2\\Documents\\programmering\\vinterprojekt\\vinterprojekt\\obj\\",
+        "outputPath": "c:\\Users\\mikael.edvardsson2\\Documents\\programmering\\vinterprojekt\\vinterprojekt\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
