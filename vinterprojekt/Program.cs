@@ -1,4 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
+using System.Diagnostics.Contracts;
 using Raylib_cs;
 
 Raylib.InitWindow(1800, 900, "vinterprojekt");
@@ -14,11 +15,11 @@ walls.Add(new Rectangle(320, 0, 16, 20));
 walls.Add(new Rectangle(150, 0, 32, 128));
 walls.Add(new Rectangle(123, 0, 1800, 20));
 
-Rectangle playerRect = new Rectangle(50, 50, 100, 100);
+Rectangle playerRect = new Rectangle(1, 50, 100, 100);
 Rectangle enemyRect = new Rectangle(1000, 100, 100, 100);
 
 string scene;
-scene = "game";
+
 scene = "start";
 
 while (!Raylib.WindowShouldClose())
@@ -45,6 +46,7 @@ while (!Raylib.WindowShouldClose())
     Raylib.ClearBackground(Color.BLACK);
     Raylib.DrawRectangle(300, 300, 40, 40, Color.RED);
     Raylib.DrawText("lets go", 300, 300, 40, Color.YELLOW);
+    
 
 
   }
@@ -88,13 +90,23 @@ while (!Raylib.WindowShouldClose())
 
 
 
-    /*bool isInAWall = CheckIfWall(playerRect, wall);
+    bool isInAWall = false;
 
-      if (isInAWall == true)
-        {
+    for (int i = 0; i < walls.Count; i++)
+    {
+      if (i == 2) continue;
+      if (Raylib.CheckCollisionRecs(playerRect, walls[i]))
+      {
+        isInAWall = true;
+      }
+    }
 
-        }
-    */
+    if (isInAWall == true)
+    {
+      scene = "start";
+
+    }
+
     /*foreach (Rectangle wall in walls)
       {
        if (Raylib.CheckCollisionRecs(playerRect, wall))

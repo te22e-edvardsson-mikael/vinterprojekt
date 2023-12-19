@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "aej0u8bUcUnB+c7X+ZY3H1JfMCrX8X4cp5cRwiscOAfQGQ59VnbH12NlN3xmETKoVABVR7+Nl0OAIdj23Wlr7g==",
+  "dgSpecHash": "EhEIXGkq6GYLOJ2Vd/LdCO8RUHjxBMaHifjxmV28EzNCk9fS7B3rRCblOx4Evp3tLl7DToMK+DaZ406tN3pjYw==",
   "success": true,
-  "projectFilePath": "c:\\Users\\mikael.edvardsson2\\Documents\\programmering\\vinterprojekt\\vinterprojekt\\vinterprojekt.csproj",
+  "projectFilePath": "C:\\Users\\mikael.edvardsson2\\Documents\\programmering\\vinterprojekt\\vinterprojekt\\vinterprojekt.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mikael.edvardsson2\\.nuget\\packages\\raylib-cs\\5.0.0\\raylib-cs.5.0.0.nupkg.sha512",
     "C:\\Users\\mikael.edvardsson2\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512"
