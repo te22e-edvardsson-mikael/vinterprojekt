@@ -22,6 +22,12 @@ Rectangle rRect = new Rectangle(275, 260, 250, 100);
 Rectangle playerRect = new Rectangle(1, 50, 100, 100);
 Rectangle enemyRect = new Rectangle(1000, 100, 100, 100);
 
+
+
+Color[] enemyColors = new Color[] { Color.BLUE, Color.PURPLE, Color.RED, Color.ORANGE };
+
+int enemyColorss = 0;
+
 string scene;
 
 scene = "start";
@@ -29,6 +35,8 @@ scene = "start";
 int liv = 1;
 
 int score = 0;
+
+bool spaceKeyReleased = true;
 
 /*--------------------------------------------------------------------------------------------------------------*/
 
@@ -39,48 +47,67 @@ if (scene == "start")
     {
 
         Raylib.ClearBackground(Color.BLACK);
-        Raylib.DrawRectangleRec(rRect, Color.WHITE);
+        Raylib.DrawRectangleRec(rRect, Color.BLACK);
         Raylib.DrawText("Press space to start", 290, 300, 20, Color.RED);
 
-        if (Raylib.IsKeyPressed(KeyboardKey.KEY_SPACE))
+      if (Raylib.IsKeyDown(KeyboardKey.KEY_SPACE) && spaceKeyReleased)
         {
             Raylib.ClearBackground(Color.BLACK);
+
             scene = "game";
+
+            playerRect.X = 1;
+            playerRect.Y = 50;
+            
+            spaceKeyReleased = false; //fixar restart bugg
+        }
+
+      if (Raylib.IsKeyReleased(KeyboardKey.KEY_SPACE))
+        {
+            spaceKeyReleased = true;
         }
     }
   
 
-  Raylib.BeginDrawing();
 
-  Raylib.ClearBackground(Color.WHITE);
+  
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  else if (scene == "game")
+  {
+    Raylib.ClearBackground(Color.WHITE);
+    Raylib.BeginDrawing();
+
+//render
+Raylib.DrawText($"points {score}", 50, 520, 40, Color.GRAY);
+Raylib.DrawText($"Health {liv}", 250, 520, 40, Color.GRAY);
+  
+
 
   
 
   Raylib.DrawRectangleRec(playerRect, Color.RED);
-  Raylib.DrawRectangleRec(enemyRect, Color.BLUE);
-  
+  Raylib.DrawRectangleRec(enemyRect, enemyColors[enemyColorss]);
 
-  
 
-  foreach (Rectangle wall in walls)
+foreach (Rectangle wall in walls)
   {
     Raylib.DrawRectangleRec(wall, Color.DARKBLUE);
   }
 
-
-
-
   
-
-
-
-
-  if (scene == "game")
-  {
-
-//render
-        Raylib.DrawText($"points {score}", 50, 520, 40, Color.GRAY);
-        Raylib.DrawText($"Health {liv}", 250, 520, 40, Color.GRAY);
+    
     enemyRect.Y += 1;
 
     if (Raylib.IsKeyDown(KeyboardKey.KEY_D))
@@ -101,17 +128,7 @@ if (scene == "start")
       playerRect.Y += 5;
     }
 
-    /*if (playerRect.X < 0 || playerRect.X > 1699)
-    {
-      playerRect.X -= 1;
-    }
 
-    if (playerRect.Y < 0 || playerRect.Y > 799)
-    {
-      playerRect.Y -= 1;
-
-    }*/
-    
 
 
 
@@ -135,9 +152,27 @@ if (scene == "start")
 
   if (liv < 0){
     scene = "start";
+
+    spaceKeyReleased = true;
   }
 
-    /*foreach (Rectangle wall in walls)
+
+  
+if(Raylib.CheckCollisionRecs(playerRect, enemyRect)){
+
+enemyColorss = (enemyColorss + 1) % enemyColors.Length;
+
+score++;
+
+enemyRect.Y= 0;
+}
+
+  }
+
+  Raylib.EndDrawing();
+}
+
+  /*foreach (Rectangle wall in walls)
       {
        if (Raylib.CheckCollisionRecs(playerRect, wall))
        {
@@ -146,13 +181,15 @@ if (scene == "start")
 
        }
      }*/
-if(Raylib.CheckCollisionRecs(playerRect, enemyRect)){
 
-score++;
-enemyRect.Y= 0;
-}
+         /*if (playerRect.X < 0 || playerRect.X > 1699)
+    {
+      playerRect.X -= 1;
+    }
 
-  }
+    if (playerRect.Y < 0 || playerRect.Y > 799)
+    {
+      playerRect.Y -= 1;
 
-  Raylib.EndDrawing();
-}
+    }*/
+    
