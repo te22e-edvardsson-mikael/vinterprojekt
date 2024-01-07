@@ -15,15 +15,32 @@ walls.Add(new Rectangle(320, 0, 16, 20));
 walls.Add(new Rectangle(150, 0, 32, 128));
 walls.Add(new Rectangle(123, 0, 1800, 20));
 
+
+Rectangle rRect = new Rectangle(275, 260, 250, 100);
 Rectangle playerRect = new Rectangle(1, 50, 100, 100);
 Rectangle enemyRect = new Rectangle(1000, 100, 100, 100);
 
 string scene;
 
 scene = "start";
+/*--------------------------------------------------------------------------------------------------------------*/
 
 while (!Raylib.WindowShouldClose())
 {
+
+if (scene == "start")
+    {
+
+        Raylib.ClearBackground(Color.BLACK);
+        Raylib.DrawRectangleRec(rRect, Color.WHITE);
+        Raylib.DrawText("Press space to start", 290, 300, 20, Color.RED);
+
+        if (Raylib.IsKeyPressed(KeyboardKey.KEY_SPACE))
+        {
+            scene = "game";
+        }
+    }
+  
 
   Raylib.BeginDrawing();
 
@@ -40,13 +57,7 @@ while (!Raylib.WindowShouldClose())
     Raylib.DrawRectangleRec(wall, Color.DARKBLUE);
   }
 
-  if (scene == "start")
-  {
 
-    Raylib.ClearBackground(Color.BLACK);
-    Raylib.DrawRectangle(300, 300, 40, 40, Color.RED);
-    Raylib.DrawText("lets go", 300, 300, 40, Color.YELLOW);
-    
 
 
   }
@@ -107,7 +118,7 @@ while (!Raylib.WindowShouldClose())
 
     }
 
-    /*foreach (Rectangle wall in walls)
+    foreach (Rectangle wall in walls)
       {
        if (Raylib.CheckCollisionRecs(playerRect, wall))
        {
@@ -115,9 +126,8 @@ while (!Raylib.WindowShouldClose())
      playerRect.Y *= -1;
 
        }
-     }*/
+     }
 
 
   }
   Raylib.EndDrawing();
-}
