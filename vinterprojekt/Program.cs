@@ -1,6 +1,8 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿
 using System.Diagnostics.Contracts;
 using Raylib_cs;
+using System.Numerics;
+
 
 Raylib.InitWindow(1800, 900, "vinterprojekt");
 Raylib.SetTargetFPS(60);
@@ -23,6 +25,11 @@ Rectangle enemyRect = new Rectangle(1000, 100, 100, 100);
 string scene;
 
 scene = "start";
+
+int liv = 1;
+
+int score = 0;
+
 /*--------------------------------------------------------------------------------------------------------------*/
 
 while (!Raylib.WindowShouldClose())
@@ -37,6 +44,7 @@ if (scene == "start")
 
         if (Raylib.IsKeyPressed(KeyboardKey.KEY_SPACE))
         {
+            Raylib.ClearBackground(Color.BLACK);
             scene = "game";
         }
     }
@@ -60,7 +68,7 @@ if (scene == "start")
 
 
 
-  }
+  
 
 
 
@@ -68,6 +76,9 @@ if (scene == "start")
   if (scene == "game")
   {
 
+//render
+        Raylib.DrawText($"points {score}", 50, 520, 40, Color.GRAY);
+        Raylib.DrawText($"Health {liv}", 250, 520, 40, Color.GRAY);
     enemyRect.Y += 1;
 
     if (Raylib.IsKeyDown(KeyboardKey.KEY_D))
@@ -88,24 +99,25 @@ if (scene == "start")
       playerRect.Y += 5;
     }
 
-    if (playerRect.X < 0 || playerRect.X > 1699)
+    /*if (playerRect.X < 0 || playerRect.X > 1699)
     {
-      playerRect.X = -1;
+      playerRect.X -= 1;
     }
 
     if (playerRect.Y < 0 || playerRect.Y > 799)
     {
-      playerRect.Y = -1;
+      playerRect.Y -= 1;
 
-    }
+    }*/
+    
 
 
 
     bool isInAWall = false;
 
-    for (int i = 0; i < walls.Count; i++)
+     for (int i = 0; i < walls.Count; i++)
     {
-      if (i == 2) continue;
+     // if (i == 2) continue;
       if (Raylib.CheckCollisionRecs(playerRect, walls[i]))
       {
         isInAWall = true;
@@ -114,20 +126,25 @@ if (scene == "start")
 
     if (isInAWall == true)
     {
-      scene = "start";
+     // scene = "start";
+     liv--;
 
     }
+
+  
 
     foreach (Rectangle wall in walls)
       {
        if (Raylib.CheckCollisionRecs(playerRect, wall))
        {
-     playerRect.X *= -1;
-     playerRect.Y *= -1;
+     playerRect.X -= playerRect.X;
+     playerRect.Y -= playerRect.Y;
 
        }
      }
 
 
   }
+
   Raylib.EndDrawing();
+}
