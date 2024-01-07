@@ -89,7 +89,7 @@ Raylib.DrawText($"Health {liv}", 250, 520, 40, Color.GRAY);
 
 enemyRect.Y +=enemyVelocityY;
 
-if (enemyRect.Y <= 0 || enemyRect.Y + 100 >= 1800){
+if (enemyRect.Y <= 0 || enemyRect.Y + 100 >= 900){
   enemyVelocityY = -enemyVelocityY;
 }
 
@@ -101,9 +101,7 @@ foreach (Rectangle wall in walls)
   
     
 
-    if(enemyRect.Y > 1799){
-      enemyRect.Y = enemyRect.Y*-1;
-    }
+   
 
     if (Raylib.IsKeyDown(KeyboardKey.KEY_D))
     {
