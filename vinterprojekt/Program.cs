@@ -54,11 +54,13 @@ if (scene == "start")
 
   Raylib.ClearBackground(Color.WHITE);
 
-  Rectangle overlap = Raylib.GetCollisionRec(playerRect, enemyRect);
+  
 
   Raylib.DrawRectangleRec(playerRect, Color.RED);
   Raylib.DrawRectangleRec(enemyRect, Color.BLUE);
-  Raylib.DrawRectangleRec(overlap, Color.ORANGE);
+  
+
+  
 
   foreach (Rectangle wall in walls)
   {
@@ -126,14 +128,16 @@ if (scene == "start")
 
     if (isInAWall == true)
     {
-     // scene = "start";
+     
      liv--;
 
     }
 
-  
+  if (liv < 0){
+    scene = "start";
+  }
 
-    foreach (Rectangle wall in walls)
+    /*foreach (Rectangle wall in walls)
       {
        if (Raylib.CheckCollisionRecs(playerRect, wall))
        {
@@ -141,8 +145,12 @@ if (scene == "start")
      playerRect.Y -= playerRect.Y;
 
        }
-     }
+     }*/
+if(Raylib.CheckCollisionRecs(playerRect, enemyRect)){
 
+score++;
+enemyRect.Y= 0;
+}
 
   }
 
