@@ -8,6 +8,27 @@ Raylib.InitWindow(1800, 900, "vinterprojekt");
 Raylib.SetTargetFPS(60);
 
 
+//variabler//
+int enemyColorss = 0;
+
+string scene;
+string scene2;
+
+scene = "start";
+
+scene2 = "victory";
+
+int liv = 1;
+
+int score = 0;
+
+float enemyVelocityY = 1f;
+
+bool spaceKeyReleased = true;
+
+
+
+//listor//
 
 List<Rectangle> walls = new();
 
@@ -26,19 +47,6 @@ Rectangle enemyRect = new Rectangle(1000, 100, 100, 100);
 
 Color[] enemyColors = new Color[] { Color.BLUE, Color.PURPLE, Color.RED, Color.ORANGE };
 
-int enemyColorss = 0;
-
-string scene;
-
-scene = "start";
-
-int liv = 1;
-
-int score = 0;
-
-float enemyVelocityY = 1f;
-
-bool spaceKeyReleased = true;
 
 /*--------------------------------------------------------------------------------------------------------------*/
 
@@ -78,20 +86,20 @@ if (scene == "start")
 //render
 Raylib.DrawText($"points {score}", 50, 520, 40, Color.GRAY);
 Raylib.DrawText($"Health {liv}", 250, 520, 40, Color.GRAY);
-  
+Raylib.DrawRectangleRec(playerRect, Color.RED);
+Raylib.DrawRectangleRec(enemyRect, enemyColors[enemyColorss]);
 
 
-  
+//-------------------------------------------------------------------------------
 
-  Raylib.DrawRectangleRec(playerRect, Color.RED);
-  Raylib.DrawRectangleRec(enemyRect, enemyColors[enemyColorss]);
-
-
+//logic
 enemyRect.Y +=enemyVelocityY;
 
 if (enemyRect.Y <= 0 || enemyRect.Y + 100 >= 900){
   enemyVelocityY = -enemyVelocityY;
 }
+
+
 
 foreach (Rectangle wall in walls)
   {
@@ -101,7 +109,7 @@ foreach (Rectangle wall in walls)
   
     
 
-   
+   //rörelse för player
 
     if (Raylib.IsKeyDown(KeyboardKey.KEY_D))
     {
@@ -122,8 +130,9 @@ foreach (Rectangle wall in walls)
     }
 
 
+//-------------------------------------------------------------------------
 
-
+//räkna ints
 
     bool isInAWall = false;
 
@@ -149,8 +158,19 @@ foreach (Rectangle wall in walls)
     spaceKeyReleased = true;
   }
 
+  if (score < 15){
+    scene2 = "victory";
+  }
 
-  
+  if(scene2 == "victory"){
+    Raylib.ClearBackground(Color.BLACK);
+    Raylib.DrawText("victory",900,450,10,Color.VIOLET);
+  }
+
+//---------------------------------------------------------------------
+
+//funktioner för enemyrect
+
 if(Raylib.CheckCollisionRecs(playerRect, enemyRect)){
 
 enemyColorss = (enemyColorss + 1) % enemyColors.Length;
@@ -167,24 +187,4 @@ enemyRect.Y= random.Next(1, 801);
   Raylib.EndDrawing();
 }
 
-  /*foreach (Rectangle wall in walls)
-      {
-       if (Raylib.CheckCollisionRecs(playerRect, wall))
-       {
-     playerRect.X -= playerRect.X;
-     playerRect.Y -= playerRect.Y;
-
-       }
-     }*/
-
-         /*if (playerRect.X < 0 || playerRect.X > 1699)
-    {
-      playerRect.X -= 1;
-    }
-
-    if (playerRect.Y < 0 || playerRect.Y > 799)
-    {
-      playerRect.Y -= 1;
-
-    }*/
     
