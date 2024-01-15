@@ -34,9 +34,21 @@ List<Rectangle> walls = new();
 
 
 walls.Add(new Rectangle(300, 100, 60, 20));
-walls.Add(new Rectangle(320, 0, 16, 20));
-walls.Add(new Rectangle(150, 0, 32, 128));
-walls.Add(new Rectangle(123, 0, 1800, 20));
+walls.Add(new Rectangle(320, 0, 16, 200));
+walls.Add(new Rectangle(300, 0, 32, 128));
+walls.Add(new Rectangle(300, 600, 100, 128));
+walls.Add(new Rectangle(1000, 0, 50, 128));
+walls.Add(new Rectangle(1000, 600, 50, 128));
+walls.Add(new Rectangle(800, 100, 50, 128));
+walls.Add(new Rectangle(1600, 70, 50, 128));
+walls.Add(new Rectangle(1400, 300, 50, 128));
+
+
+walls.Add(new Rectangle(0, 0, 1800, 20));
+walls.Add(new Rectangle(0, 880, 1800, 20));
+walls.Add(new Rectangle(1780, 0, 20, 900));
+walls.Add(new Rectangle(0, 0, 20, 900));
+
 
 
 Rectangle rRect = new Rectangle(275, 260, 250, 100);
@@ -66,7 +78,7 @@ if (scene == "start")
 
             scene = "game";
 
-            playerRect.X = 1;
+            playerRect.X = 21;
             playerRect.Y = 50;
             
             spaceKeyReleased = false; 
@@ -80,8 +92,8 @@ if (scene == "start")
 
   else if (scene == "game")
   {
-    Raylib.ClearBackground(Color.WHITE);
     Raylib.BeginDrawing();
+    Raylib.ClearBackground(Color.WHITE);
 
 //render
 Raylib.DrawText($"points {score}", 50, 520, 40, Color.GRAY);
@@ -136,9 +148,9 @@ foreach (Rectangle wall in walls)
 
     bool isInAWall = false;
 
-     for (int i = 0; i < walls.Count; i++)
+    for (int i = 0; i < walls.Count; i++)
     {
-     // if (i == 2) continue;
+     
       if (Raylib.CheckCollisionRecs(playerRect, walls[i]))
       {
         isInAWall = true;
@@ -149,6 +161,7 @@ foreach (Rectangle wall in walls)
     {
      
      liv--;
+
 
     }
 
